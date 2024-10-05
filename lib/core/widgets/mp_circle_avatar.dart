@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget avatar(String url, MaterialColor color) {
+Widget avatar(String url, MaterialColor color) { 
   return new Material(
     borderRadius: new BorderRadius.circular(20.0),
     elevation: 3.0,

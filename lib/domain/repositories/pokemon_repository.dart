@@ -1,4 +1,4 @@
-import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
+import '../entities/pokemon.dart';
 
 abstract class PokemonRepository{
   Future<List<Pokemon>> getPokemonList();

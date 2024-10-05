@@ -1,11 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cleanarchitecture_mvvm/main.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/CameraScreen.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/photo/ViewPhotoStaggered.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonGrid.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPokemonList.dart';
-import 'package:flutter_cleanarchitecture_mvvm/utils/AppLocalizations.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/camera_screen.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/photo/photo_staggered_view.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/view/pokemon_gird_view.dart';
+import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/view/pokemon_list_view.dart';
+import 'package:flutter_cleanarchitecture_mvvm/core/utils/AppLocalizations.dart';
 
 class PokemonHome extends StatefulWidget {
   final List<CameraDescription> cameras;

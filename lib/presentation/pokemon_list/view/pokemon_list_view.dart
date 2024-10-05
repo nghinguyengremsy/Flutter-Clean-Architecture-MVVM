@@ -1,9 +1,10 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
-import 'package:flutter_cleanarchitecture_mvvm/data/widget/mp_circle_avatar.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_detail/ViewPokemonDetail.dart';
-import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewModelPokemonList.dart';
+
+import '../../../core/widgets/mp_circle_avatar.dart';
+import '../../../domain/entities/pokemon.dart';
+import '../../pokemon_detail/pokemon_detail_view.dart';
+import '../viewmodel/pokemon_list_viewmodel.dart';
 
 class ViewPokemonList extends StatelessWidget {
   @override

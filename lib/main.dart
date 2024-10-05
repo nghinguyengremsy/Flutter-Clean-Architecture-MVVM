@@ -2,13 +2,15 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'presentation/home/PokemonHome.dart';
-import 'utils/AppLocalizations.dart';
+import 'injection.dart';
+import 'presentation/home/pokemon_home.dart';
+import 'core/utils/AppLocalizations.dart';
 
 late List<CameraDescription> cameras;
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await injectDependencies();
   cameras = await availableCameras();
   runApp(new MyApp());
 }
