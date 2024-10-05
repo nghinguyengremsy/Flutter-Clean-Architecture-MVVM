@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 class ViewModelPokemonList {
   var pokemonListSubject = PublishSubject<List<Pokemon>>();
 
-  Observable<List<Pokemon>> get pokemonList => pokemonListSubject.stream;
+  Stream<List<Pokemon>> get pokemonList => pokemonListSubject.stream;
   GetPokemonListUseCase getPokemonListUseCase =
       GetPokemonListUseCase(PokemonRepositoryImpl(PokemonApiImpl()));
 

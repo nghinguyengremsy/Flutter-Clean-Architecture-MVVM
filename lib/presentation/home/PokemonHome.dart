@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cleanarchitecture_mvvm/main.dart';
 import 'package:flutter_cleanarchitecture_mvvm/presentation/camera/CameraScreen.dart';
@@ -7,7 +8,7 @@ import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewPok
 import 'package:flutter_cleanarchitecture_mvvm/utils/AppLocalizations.dart';
 
 class PokemonHome extends StatefulWidget {
-  var cameras;
+  final List<CameraDescription> cameras;
 
   PokemonHome(this.cameras);
 
@@ -17,7 +18,7 @@ class PokemonHome extends StatefulWidget {
 
 class _PokemonHomeState extends State<PokemonHome>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -63,7 +64,7 @@ class _PokemonHomeState extends State<PokemonHome>
         ],
       ),
       floatingActionButton: new FloatingActionButton(
-          backgroundColor: Theme.of(context).accentColor,
+          backgroundColor: Theme.of(context).indicatorColor,
           child: new Icon(
             Icons.message,
             color: Colors.white,
@@ -73,7 +74,7 @@ class _PokemonHomeState extends State<PokemonHome>
   }
 
   _showToast(BuildContext context) {
-    final scaffold = Scaffold.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
         content: const Text('Hello!'),

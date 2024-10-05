@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -7,7 +6,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CameraScreen extends StatefulWidget {
-  List<CameraDescription> cameras;
+  final List<CameraDescription> cameras;
 
   CameraScreen(this.cameras);
 
@@ -18,7 +17,7 @@ class CameraScreen extends StatefulWidget {
 }
 
 class CameraScreenState extends State<CameraScreen> {
-  CameraController controller;
+  late CameraController controller;
 
   @override
   void initState() {
@@ -34,7 +33,7 @@ class CameraScreenState extends State<CameraScreen> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -77,13 +76,14 @@ class CameraScreenState extends State<CameraScreen> {
             );
 
             // Attempt to take a picture and log where it's been saved
-            await controller.takePicture(path);
+            final file = await controller.takePicture();
 
             // If the picture was taken, display it on a new screen
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(imagePath: path),
+                builder: (context) =>
+                    DisplayPictureScreen(imagePath: file.path),
               ),
             );
           } catch (e) {
@@ -100,7 +100,8 @@ class CameraScreenState extends State<CameraScreen> {
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+  const DisplayPictureScreen({Key? key, required this.imagePath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

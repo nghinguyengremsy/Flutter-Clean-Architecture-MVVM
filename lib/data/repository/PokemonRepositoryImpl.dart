@@ -3,13 +3,13 @@ import 'package:flutter_cleanarchitecture_mvvm/data/remote/PokemonApi.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/repository/PokemonRepository.dart';
 
 class PokemonRepositoryImpl implements PokemonRepository{
-  PokemonApi pokemonApi;
+  late PokemonApi _pokemonApi;
   PokemonRepositoryImpl(PokemonApi pokemonApi){
-    this.pokemonApi = pokemonApi;
+    this._pokemonApi = pokemonApi;
   }
 
   @override
   Future<List<Pokemon>> getPokemonList() {
-    return pokemonApi.getPokemonList();
+    return _pokemonApi.getPokemonList();
   }
 }

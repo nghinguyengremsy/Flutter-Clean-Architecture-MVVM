@@ -10,13 +10,13 @@ class AppLocalizations {
   AppLocalizations(this.locale);
 
   static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  Map<String, String> _localizedStrings;
+  var _localizedStrings = <String, String>{};
 
   // Load file json vào bộ nhớ
   Future<bool> load() async {
@@ -38,7 +38,7 @@ class AppLocalizations {
   // Đoạn này đơn giản chỉ là lấy giá trị đang
   // được lưu tại cái key được truyền vào
   String translate(String key) {
-    return _localizedStrings[key];
+    return _localizedStrings[key] ?? '';
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/widget/mp_circle_avatar.dart';
@@ -8,8 +8,7 @@ import 'package:flutter_cleanarchitecture_mvvm/presentation/pokemon_list/ViewMod
 class ViewPokemonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: buildPokemonContent());
+    return Scaffold(body: buildPokemonContent());
   }
 
   Widget buildPokemonContent() {
@@ -46,8 +45,10 @@ class PokemonListViewState extends State<PokemonListView>
   void initState() {
     super.initState();
     refresh();
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result != ConnectivityResult.none) {
+    Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> result) {
+      if (!result.contains(ConnectivityResult.none)) {
         refresh();
       }
     });
@@ -80,12 +81,14 @@ class PokemonListViewState extends State<PokemonListView>
           else
             return buildListViewNoDataWidget();
         }
+        return const SizedBox();
       },
     );
   }
 
   Widget buildListViewWidget(List<Pokemon> pokemonList) {
-    return Flexible(child: new ListView.builder(
+    return Flexible(
+        child: new ListView.builder(
       padding: EdgeInsets.all(10),
       itemCount: pokemonList.length,
       itemBuilder: (BuildContext context, int index) {
@@ -101,10 +104,7 @@ class PokemonListViewState extends State<PokemonListView>
           title: new Text(item.name),
           subtitle: new Text(
             "Weight: ${item.weight} Height: ${item.height} ",
-            style: Theme
-                .of(context)
-                .textTheme
-                .caption,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           onTap: () {
             Navigator.push(
@@ -135,13 +135,12 @@ class PokemonListViewState extends State<PokemonListView>
 
   void showSnackBar(BuildContext context, String errorMessage) async {
     await Future.delayed(Duration.zero);
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorMessage)));
   }
 
   void refresh() {
     viewModelPokemonList.getPokemonList();
     setState(() {});
   }
-
 }
-

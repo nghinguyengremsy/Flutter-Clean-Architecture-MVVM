@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'presentation/home/PokemonHome.dart';
 import 'utils/AppLocalizations.dart';
 
-List<CameraDescription> cameras;
+late List<CameraDescription> cameras;
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
         ],
         localeResolutionCallback: (locale, supportedLocales) {
           for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.languageCode == locale.languageCode &&
-                supportedLocale.countryCode == locale.countryCode) {
+            if (supportedLocale.languageCode == locale?.languageCode &&
+                supportedLocale.countryCode == locale?.countryCode) {
               return supportedLocale;
             }
           }

@@ -1,4 +1,4 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/model/Pokemon.dart';
 import 'package:flutter_cleanarchitecture_mvvm/data/widget/mp_circle_avatar.dart';
@@ -44,8 +44,10 @@ class PokemonListViewState extends State<PokemonListView>
   void initState() {
     super.initState();
     refresh();
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if (result != ConnectivityResult.none) {
+    Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> result) {
+      if (!result.contains(ConnectivityResult.none)) {
         refresh();
       }
     });
@@ -78,6 +80,7 @@ class PokemonListViewState extends State<PokemonListView>
           else
             return buildListViewNoDataWidget();
         }
+        return const SizedBox();
       },
     );
   }
@@ -110,11 +113,11 @@ class PokemonListViewState extends State<PokemonListView>
                           ),
                           new Text(
                             "Weight: ${item.weight}",
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           new Text(
                             "Height: ${item.height} ",
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ],
                       ),
@@ -143,7 +146,8 @@ class PokemonListViewState extends State<PokemonListView>
 
   void showSnackBar(BuildContext context, String errorMessage) async {
     await Future.delayed(Duration.zero);
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(errorMessage)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(errorMessage)));
   }
 
   void refresh() {
