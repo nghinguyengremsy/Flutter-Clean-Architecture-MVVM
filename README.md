@@ -13,6 +13,10 @@ There are 3 main modules to help separate the code. They are Data, Domain, and A
 - **Domain** contains UseCases, Domain Objects/Models (Pojos/Kotlin Data Classes), and Repository Interfaces
    
 - **Application** contains UI, View Objects, Android components, etc. Can be split into separate modules itself if needed. For example, we could have a module called Device handling things like camera, location, etc.
+
+![Structure](documents/structure.png)
+
+![Call Flow](documents/call_flow.png)
    
 # Repository
  - Bridge between Data layer and Domain layer
